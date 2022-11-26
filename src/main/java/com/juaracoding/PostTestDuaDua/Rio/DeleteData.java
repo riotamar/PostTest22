@@ -1,4 +1,4 @@
-package PostTestDuaDua;
+package com.juaracoding.PostTestDuaDua.Rio;
 
 import org.testng.annotations.Test;
 import static  io.restassured.RestAssured.given;
@@ -9,7 +9,7 @@ public class DeleteData {
 
     @Test
     public void testDel(){
-        when()
+        RestAssured.when()
                 .delete(DelData)
                 .then()
                 .statusCode(200)
@@ -19,7 +19,7 @@ public class DeleteData {
 
     @Test
     public void validtestDel(){
-        given()
+        RestAssured.given()
                 .get(DelData)
                 .then()
                 .statusCode(200);

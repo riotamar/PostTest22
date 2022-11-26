@@ -1,4 +1,4 @@
-package PostTestDuaDua;
+package com.juaracoding.PostTestDuaDua.Rio;
 
 import io.restassured.http.ContentType;
 import org.json.simple.JSONObject;
@@ -18,7 +18,7 @@ public class PutData {
         request.put("price", 3000);
         System.out.println(request.toJSONString());
 
-        given()
+        RestAssured.given()
                 .header("Content-Type", "application/json")
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
@@ -32,13 +32,13 @@ public class PutData {
 
     @Test
     public void testValidasiPut() {
-        given()
+        RestAssured.given()
                 .get(GetPut)
                 .then()
                 .statusCode(200)
-                .body("_id", equalTo("63821f34261319425336fb65"))
-                .body("name", equalTo("PostTest212"))
-                .body("category", equalTo("katalonn"))
-                .body("price", equalTo(3000));
+                .body("_id", Matchers.equalTo("63821f34261319425336fb65"))
+                .body("name", Matchers.equalTo("PostTest212"))
+                .body("category", Matchers.equalTo("katalonn"))
+                .body("price", Matchers.equalTo(3000));
     }
 }

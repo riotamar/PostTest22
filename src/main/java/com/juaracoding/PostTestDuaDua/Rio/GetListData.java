@@ -1,19 +1,21 @@
-package PostTestDuaDua;
+package com.juaracoding.PostTestDuaDua.Rio;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class GetSingleData {
-    String singlelist = "https://mern-backend-8881.herokuapp.com/products/63821f34261319425336fb65/";
+public class GetListData {
+    String GetAlllist = "https://mern-backend-8881.herokuapp.com/products";
 
-    @Test
-    public void testStatusCode() {
-        Response response = RestAssured.get(singlelist);
+
+    @Test(priority =1)
+    public void CodeGetList() {
+        Response response = RestAssured.get(GetAlllist);
+
+
         System.out.println(response.getBody().asString());
         System.out.println(response.getStatusCode());
         System.out.println(response.getStatusLine());
@@ -23,14 +25,14 @@ public class GetSingleData {
         int actual = response.getStatusCode();
         Assert.assertEquals(actual, 200);
     }
-    @Test
-    public void testValidasiGetSingle() {
-        given()
-                .get(singlelist)
+
+
+    @Test(priority = 2)
+    public void testValidasiGetList() {
+        RestAssured.given()
+                .get(GetAlllist)
                 .then()
                 .statusCode(200)
-                .body("name", equalTo("PostTest21"))
-                .body("category", equalTo("katalon"))
-                .body("price", equalTo(3000));
+                .body("_id[1]", Matchers.equalTo("63821f34261319425336fb65"));
     }
 }
