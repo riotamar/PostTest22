@@ -1,4 +1,4 @@
-package com.juaracoding.PostTestDuaDua.Rio;
+package RioPostTestDuaDua;
 
 import org.testng.annotations.Test;
 import static  io.restassured.RestAssured.given;

@@ -1,4 +1,4 @@
-package com.juaracoding.PostTestDuaDua.Rio;
+package RioPostTestDuaDua;
 
 import io.restassured.http.ContentType;
 import org.json.simple.JSONObject;
@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PutData {
-    String GetPut = "https://mern-backend-8881.herokuapp.com/products/63821f34261319425336fb65";
+public class PatchData {
+    String GetPatch = "https://mern-backend-8881.herokuapp.com/products/63821f34261319425336fb65";
 
     @Test
-    public void testPutProductId() {
+    public void Patch() {
         JSONObject request = new JSONObject();
         request.put("_id", "63821f34261319425336fb65");
         request.put("name", "PostTest212");
@@ -24,16 +24,15 @@ public class PutData {
                 .accept(ContentType.JSON)
                 .body(request.toJSONString())
                 .when()
-                .put(GetPut)
+                .patch("https://mern-backend-8881.herokuapp.com/products/63821f34261319425336fb65")
                 .then()
-                .statusCode(404)
+                .statusCode(200)
                 .log().all();
     }
-
     @Test
-    public void testValidasiPut() {
+    public void testValidasiPatch() {
         RestAssured.given()
-                .get(GetPut)
+                .get(GetPatch)
                 .then()
                 .statusCode(200)
                 .body("_id", Matchers.equalTo("63821f34261319425336fb65"))
@@ -41,4 +40,5 @@ public class PutData {
                 .body("category", Matchers.equalTo("katalonn"))
                 .body("price", Matchers.equalTo(3000));
     }
+
 }
